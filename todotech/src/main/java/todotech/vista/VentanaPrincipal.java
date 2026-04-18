@@ -2,6 +2,7 @@ package todotech.vista;
 
 import javax.swing.*;
 import java.awt.*;
+import todotech.modelo.Usuario;
 
 /**
  * Ventana principal del sistema TodoTech Shop.
@@ -9,9 +10,37 @@ import java.awt.*;
  */
 public class VentanaPrincipal extends JFrame {
 
+    private Usuario usuario;
+    private JLabel lblUsuario;
+
     public VentanaPrincipal() {
         configurarVentana();
         construirUI();
+    }
+
+    public VentanaPrincipal(Usuario usuario) {
+        this();
+        setUsuario(usuario);
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+        actualizarEtiquetaUsuario();
+    }
+
+    private void actualizarEtiquetaUsuario() {
+        if (lblUsuario == null) {
+            return;
+        }
+        String texto = "Usuario: Invitado  ";
+        if (usuario != null) {
+            String nombre = usuario.getNombre();
+            if (nombre == null || nombre.isBlank()) {
+                nombre = usuario.getUsuario();
+            }
+            texto = "Usuario: " + (nombre != null ? nombre : "Invitado") + "  ";
+        }
+        lblUsuario.setText(texto);
     }
 
     private void configurarVentana() {
@@ -33,10 +62,10 @@ public class VentanaPrincipal extends JFrame {
         logo.setForeground(Color.WHITE);
         header.add(logo, BorderLayout.WEST);
 
-        JLabel usuario = new JLabel("Usuario: Admin  ");
-        usuario.setFont(new Font("Arial", Font.PLAIN, 13));
-        usuario.setForeground(new Color(200, 220, 240));
-        header.add(usuario, BorderLayout.EAST);
+        lblUsuario = new JLabel("Usuario: Invitado  ");
+        lblUsuario.setFont(new Font("Arial", Font.PLAIN, 13));
+        lblUsuario.setForeground(new Color(200, 220, 240));
+        header.add(lblUsuario, BorderLayout.EAST);
 
         add(header, BorderLayout.NORTH);
 
