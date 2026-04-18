@@ -76,10 +76,9 @@ public class VentanaPrincipal extends JFrame {
 
         // Persona A — sus módulos
         tabs.addTab("Clientes",         new FormCliente());
-        tabs.addTab("Órdenes de Venta", new JPanel()); // FormOrden — próximo
-        tabs.addTab("Catálogo",         new JPanel()); // FormCatalogo — próximo
-        tabs.addTab("Pagos",            new JPanel()); // FormPago — próximo
-        tabs.addTab("Devoluciones",     new JPanel()); // FormDevolucion — próximo
+        tabs.addTab("Órdenes de Venta", new FormOrden());
+        tabs.addTab("Pagos",            new FormPago());
+        tabs.addTab("Devoluciones",     new FormDevolucion());
 
         // Persona B — sus módulos (placeholders)
         tabs.addTab("Inventario",       new JPanel());

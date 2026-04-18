@@ -90,6 +90,17 @@ public class OrdenRepositorio {
         return "ORD-000001";
     }
 
+    /** Busca una orden por ID */
+    public OrdenVenta buscarPorId(int id) throws SQLException {
+        String sql = "SELECT * FROM ORDENES WHERE ID = ?";
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) return mapear(rs);
+        }
+        return null;
+    }
+
     /** Busca una orden por número */
     public OrdenVenta buscarPorNumero(String numeroOrden) throws SQLException {
         String sql = "SELECT * FROM ORDENES WHERE NUMERO_ORDEN = ?";
