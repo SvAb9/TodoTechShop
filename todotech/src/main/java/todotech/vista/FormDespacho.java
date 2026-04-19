@@ -169,8 +169,8 @@ public class FormDespacho extends JPanel {
     // ─── PANEL INFERIOR: botón confirmar ─────────────────────────────
     private JPanel panelBotonConfirmar() {
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setBackground(new Color(31, 78, 121));
-        panel.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
+        panel.setBackground(Color.WHITE);
+        panel.setBorder(BorderFactory.createLineBorder(new Color(231, 232, 254), 2)); // #E7E8FE
 
         JLabel lblInfo = new JLabel("  Verifique los productos antes de confirmar el despacho.");
         lblInfo.setFont(new Font("Arial", Font.ITALIC, 12));
@@ -280,14 +280,34 @@ public class FormDespacho extends JPanel {
     }
 
     private JButton boton(String texto, Color color) {
-        JButton btn = new JButton(texto);
-        btn.setFont(new Font("Arial", Font.BOLD, 12));
-        btn.setBackground(color);
-        btn.setForeground(Color.WHITE);
-        btn.setFocusPainted(false);
-        btn.setBorder(BorderFactory.createEmptyBorder(8, 14, 8, 14));
-        return btn;
-    }
+    JButton btn = new JButton(texto);
+    btn.setFont(new Font("Arial", Font.BOLD, 12));
+    btn.setBackground(new Color(44, 86, 122));      // #2C567A — azul grisáceo
+    btn.setForeground(Color.WHITE);                 // blanco puro, buen contraste
+    btn.setOpaque(true);
+    btn.setBorderPainted(false);
+    btn.setFocusPainted(false);
+    btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    btn.setBorder(BorderFactory.createEmptyBorder(8, 16, 8, 16));
+
+    // Efecto hover
+    btn.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override public void mouseEntered(java.awt.event.MouseEvent e) {
+            btn.setBackground(new Color(60, 110, 155));  // más claro al pasar el mouse
+        }
+        @Override public void mouseExited(java.awt.event.MouseEvent e) {
+            btn.setBackground(new Color(44, 86, 122));   // vuelve al original
+        }
+        @Override public void mousePressed(java.awt.event.MouseEvent e) {
+            btn.setBackground(new Color(30, 62, 90));    // más oscuro al hacer click
+        }
+        @Override public void mouseReleased(java.awt.event.MouseEvent e) {
+            btn.setBackground(new Color(60, 110, 155));
+        }
+    });
+
+    return btn;
+}
 
     private void mostrarExito(String msg) {
         JOptionPane.showMessageDialog(this, msg, "Despacho Exitoso", JOptionPane.INFORMATION_MESSAGE);

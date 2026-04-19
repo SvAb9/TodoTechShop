@@ -110,7 +110,7 @@ public class VentanaPrincipal extends JFrame {
                 UIManager.put("TextArea.foreground", Color.BLACK);
                 UIManager.put("Table.foreground", Color.BLACK);
                 UIManager.put("TableHeader.foreground", Color.WHITE);
-                UIManager.put("ComboBox.foreground", Color.BLACK);
+                UIManager.put("ComboBox.foreground", Color.BLACK); 
             } catch (Exception ignored) {}
             new VentanaPrincipal().setVisible(true);
         });

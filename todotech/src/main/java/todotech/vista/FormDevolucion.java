@@ -118,11 +118,12 @@ public class FormDevolucion extends JPanel {
 
     private JPanel panelBotonesAdmin() {
         JPanel p = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 4));
-        p.setBackground(new Color(240, 240, 240));
+         p.setBackground(Color.WHITE);
+         p.setBorder(BorderFactory.createLineBorder(new Color(231, 232, 254), 2)); // #E7E8FE
 
-        JButton btnRefrescar = boton("Refrescar", new Color(80, 80, 80));
-        JButton btnAprobar   = boton("Aprobar",   new Color(55, 86, 35));
-        JButton btnRechazar  = boton("Rechazar",  new Color(123, 36, 28));
+        JButton btnRefrescar = boton("Refrescar",null);
+        JButton btnAprobar   = boton("Aprobar",   null);
+        JButton btnRechazar  = boton("Rechazar", null);
 
         btnRefrescar.addActionListener(e -> cargarPendientes());
         btnAprobar.addActionListener(e   -> aprobar());
@@ -222,15 +223,35 @@ public class FormDevolucion extends JPanel {
         return (int) datosCompletos.get(fila)[1]; // índice 1 = idOrden
     }
 
-    private JButton boton(String texto, Color color) {
-        JButton btn = new JButton(texto);
-        btn.setFont(new Font("Arial", Font.BOLD, 12));
-        btn.setBackground(color);
-        btn.setForeground(Color.WHITE);
-        btn.setFocusPainted(false);
-        btn.setBorder(BorderFactory.createEmptyBorder(6, 12, 6, 12));
-        return btn;
-    }
+  private JButton boton(String texto, Color color) {
+    JButton btn = new JButton(texto);
+    btn.setFont(new Font("Arial", Font.BOLD, 12));
+    btn.setBackground(new Color(44, 86, 122));      // #2C567A — azul grisáceo
+    btn.setForeground(Color.WHITE);                 // blanco puro, buen contraste
+    btn.setOpaque(true);
+    btn.setBorderPainted(false);
+    btn.setFocusPainted(false);
+    btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    btn.setBorder(BorderFactory.createEmptyBorder(8, 16, 8, 16));
+
+    // Efecto hover
+    btn.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override public void mouseEntered(java.awt.event.MouseEvent e) {
+            btn.setBackground(new Color(60, 110, 155));  // más claro al pasar el mouse
+        }
+        @Override public void mouseExited(java.awt.event.MouseEvent e) {
+            btn.setBackground(new Color(44, 86, 122));   // vuelve al original
+        }
+        @Override public void mousePressed(java.awt.event.MouseEvent e) {
+            btn.setBackground(new Color(30, 62, 90));    // más oscuro al hacer click
+        }
+        @Override public void mouseReleased(java.awt.event.MouseEvent e) {
+            btn.setBackground(new Color(60, 110, 155));
+        }
+    });
+
+    return btn;
+}
 
     private void mostrarExito(String msg) {
         JOptionPane.showMessageDialog(this, msg, "Éxito", JOptionPane.INFORMATION_MESSAGE);
