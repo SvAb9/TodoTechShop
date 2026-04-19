@@ -5,7 +5,7 @@
 - Oracle Database XE (Express Edition) — gratis
 - SQL Developer (para ejecutar el script)
 - VS Code con extensión "Extension Pack for Java"
-- ojdbc11.jar (driver Oracle)
+- ojdbc17.jar (driver Oracle)
 
 ---
 
@@ -50,14 +50,14 @@ Con esa conexión ejecuta el resto del archivo `database.sql`
 
 ## Paso 3 — Agregar el driver Oracle al proyecto
 
-1. Descarga ojdbc11.jar desde:
+1. Descarga ojdbc17.jar desde:
    https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html
    
    O agrégalo con Maven agregando esto a pom.xml si usas Maven:
    ```xml
    <dependency>
      <groupId>com.oracle.database.jdbc</groupId>
-     <artifactId>ojdbc11</artifactId>
+     <artifactId>ojdbc17</artifactId>
      <version>21.9.0.0</version>
    </dependency>
    ```
@@ -67,7 +67,7 @@ Con esa conexión ejecuta el resto del archivo `database.sql`
    ```
    todotech/
    ├── lib/
-   │   └── ojdbc11.jar
+   │   └── ojdbc17.jar
    ├── src/
    └── database.sql
    ```
@@ -98,10 +98,10 @@ Si tu Oracle usa un puerto o SID diferente, cámbialo aquí.
 cd todotech
 
 # Compilar
-javac -cp lib/ojdbc11.jar -d out $(find src -name "*.java")
+javac -cp lib/ojdbc17.jar -d out $(find src -name "*.java")
 
 # Ejecutar
-java -cp out:lib/ojdbc11.jar todotech.vista.VentanaPrincipal
+java -cp out:lib/ojdbc17.jar todotech.vista.VentanaPrincipal
 ```
 
 **En Windows (cmd):**
@@ -109,16 +109,16 @@ java -cp out:lib/ojdbc11.jar todotech.vista.VentanaPrincipal
 cd todotech
 
 # Compilar
-javac -cp lib\ojdbc11.jar -d out src\main\java\todotech\config\*.java src\main\java\todotech\modelo\*.java src\main\java\todotech\observador\*.java src\main\java\todotech\estrategia\*.java src\main\java\todotech\repositorio\*.java src\main\java\todotech\servicio\*.java src\main\java\todotech\vista\*.java
+javac -cp lib\ojdbc17.jar -d out src\main\java\todotech\config\*.java src\main\java\todotech\modelo\*.java src\main\java\todotech\observador\*.java src\main\java\todotech\estrategia\*.java src\main\java\todotech\repositorio\*.java src\main\java\todotech\servicio\*.java src\main\java\todotech\vista\*.java
 
 # Ejecutar
-java -cp out;lib\ojdbc11.jar todotech.vista.VentanaPrincipal
+java -cp out;lib\ojdbc17.jar todotech.vista.VentanaPrincipal
 ```
 
 ### Con VS Code:
 1. Instala la extensión "Extension Pack for Java"
 2. Abre la carpeta todotech/ en VS Code
-3. Agrega ojdbc11.jar a Referenced Libraries en el panel de Java Projects
+3. Agrega ojdbc17.jar a Referenced Libraries en el panel de Java Projects
 4. Clic derecho en VentanaPrincipal.java → Run Java
 
 ---
@@ -156,7 +156,7 @@ java -cp out;lib\ojdbc11.jar todotech.vista.VentanaPrincipal
 ```
 todotech/
 ├── lib/
-│   └── ojdbc11.jar          ← tú lo descargas
+│   └── ojdbc17.jar          ← tú lo descargas
 ├── src/main/java/todotech/
 │   ├── config/
 │   │   └── ConexionDB.java  ← Singleton Oracle

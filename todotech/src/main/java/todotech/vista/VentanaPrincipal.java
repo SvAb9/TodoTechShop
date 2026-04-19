@@ -81,11 +81,11 @@ public class VentanaPrincipal extends JFrame {
         tabs.addTab("Devoluciones",     new FormDevolucion());
 
         // Persona B — sus módulos (placeholders)
-        tabs.addTab("Inventario",       new JPanel());
-        tabs.addTab("Despacho",         new JPanel());
-        tabs.addTab("Histórico",        new JPanel());
-        tabs.addTab("Permisos",         new JPanel());
-        tabs.addTab("Proveedores",      new JPanel());
+        // Persona B — sus módulos
+        tabs.addTab("Inventario",       new FormInventario());
+        tabs.addTab("Despacho",         new FormDespacho());
+        tabs.addTab("Historico",        new FormHistorico());
+        tabs.addTab("Proveedores",      new FormProveedor());
 
         add(tabs, BorderLayout.CENTER);
 
@@ -104,6 +104,13 @@ public class VentanaPrincipal extends JFrame {
         SwingUtilities.invokeLater(() -> {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                UIManager.put("Button.foreground", Color.BLACK);
+                UIManager.put("Label.foreground", Color.BLACK);
+                UIManager.put("TextField.foreground", Color.BLACK);
+                UIManager.put("TextArea.foreground", Color.BLACK);
+                UIManager.put("Table.foreground", Color.BLACK);
+                UIManager.put("TableHeader.foreground", Color.WHITE);
+                UIManager.put("ComboBox.foreground", Color.BLACK);
             } catch (Exception ignored) {}
             new VentanaPrincipal().setVisible(true);
         });
